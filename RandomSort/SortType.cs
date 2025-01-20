@@ -1,7 +1,8 @@
 namespace RandomSort;
 
-public enum SortedType
+public enum SortType
 {
 	QuickSort,
-	BubbleSort
+	BubbleSort,
+	InsertionSort
 }

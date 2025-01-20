@@ -1,6 +1,6 @@
 namespace RandomSort;
 
-public class GenerateNumbersService
+public class RandomService
 {
 	public static int[] GenerateNumbers()
 	{
@@ -10,7 +10,13 @@ public class GenerateNumbersService
 		{
 			resultArray[i] = Random.Shared.Next(-100, 100);
 		}
-		Console.WriteLine(arrSize);
 		return resultArray;
+	}
+
+	public static SortType GenerateSortType()
+	{
+		Array values = Enum.GetValues(typeof(SortType));
+		var sortType = (SortType)values.GetValue(Random.Shared.Next(values.Length));
+		return sortType;
 	}
 }
