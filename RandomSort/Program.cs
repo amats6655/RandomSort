@@ -7,9 +7,34 @@ public static class Program
 {
     public static async Task Main()
     { 
+		string serverUrl = "";
+		try
+		{
         var configText = File.ReadAllText("appsettings.json");
         var jsonDoc = JsonDocument.Parse(configText);
-        var serverUrl = jsonDoc.RootElement.GetProperty("ServerName").GetString();
+			serverUrl = jsonDoc.RootElement.GetProperty("ServerName").GetString();
+		}
+		catch (FileNotFoundException)
+		{
+			Console.WriteLine("Файл appsettings.json не найден");
+			Console.ReadKey();
+		}
+		catch (JsonException)
+		{
+			Console.WriteLine("Не удалось распарсить файл appsettings.json.");
+			Console.ReadKey();
+		}
+		catch (KeyNotFoundException)
+		{
+			Console.WriteLine("Не удалось найти ServerName в appsettings.json");
+			Console.ReadKey();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex.Message);
+			Console.ReadKey();
+		}
+
 
         if (string.IsNullOrEmpty(serverUrl))
         {
