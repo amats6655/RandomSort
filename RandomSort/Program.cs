@@ -18,27 +18,32 @@ public static class Program
 		{
 			Console.WriteLine("Файл appsettings.json не найден");
 			Console.ReadKey();
+			return;
 		}
 		catch (JsonException)
 		{
 			Console.WriteLine("Не удалось распарсить файл appsettings.json.");
 			Console.ReadKey();
+			return;
 		}
 		catch (KeyNotFoundException)
 		{
 			Console.WriteLine("Не удалось найти ServerName в appsettings.json");
 			Console.ReadKey();
+			return;
 		}
 		catch (Exception ex)
 		{
 			Console.WriteLine(ex.Message);
 			Console.ReadKey();
+			return;
 		}
 
 
         if (string.IsNullOrEmpty(serverUrl))
         {
-            Console.WriteLine("Не найден ServerName в appsettings.json!");
+			Console.WriteLine("Не удалось найти ServerName в appsettings.json");
+			Console.ReadKey();
             return;
         }
 
